@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="10dp">
+
+    <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:orientation="vertical">
+
+         <TextView
+             android:id="@+id/tv_sigla_tipo"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:text="PEC (Proposta de Emenda à Constituição)"
+             android:padding="10dp"
+             android:background="@android:color/holo_red_dark"
+             android:textColor="@android:color/white"
+             android:textAppearance="@style/TextAppearance.AppCompat.Large"
+             android:gravity="center"/>
+
+        
+         <TextView
+             android:id="@+id/ementa"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="Dá nova redação ao art. 8°, inciso IV, da Constituição Federal"
+              android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+              android:layout_marginTop="5dp"
+              android:layout_marginLeft="10dp"
+              android:layout_marginRight="10dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+
+                <TextView
+                    android:id="@+id/tv_label_ano"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ano: "
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/tv_ano"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/tv_label_ano"
+                    android:text="1999"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    />
+
+            </RelativeLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_detalhes"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:text="Detalhes"/>
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>
