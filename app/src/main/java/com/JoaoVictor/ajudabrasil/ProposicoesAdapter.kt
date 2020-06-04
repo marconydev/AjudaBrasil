@@ -1,6 +1,8 @@
 package com.JoaoVictor.ajudabrasil
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,8 +10,13 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.view.menu.ActionMenuItemView
 import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import org.json.JSONObject
 
-class ProposicoesAdapter(val list: List<Proposicao>, val context: Context): RecyclerView.Adapter<ProposicoesAdapter.ViewHolder>() {
+class ProposicoesAdapter(val list: List<Proposicao>, val context: Context, val requestQueue: RequestQueue): RecyclerView.Adapter<ProposicoesAdapter.ViewHolder>() {
 
 
     //componente generico do layout, "item_proposicao"
@@ -18,8 +25,6 @@ class ProposicoesAdapter(val list: List<Proposicao>, val context: Context): Recy
         val ementa: TextView = itemView.findViewById(R.id.ementa);
         val ano: TextView = itemView.findViewById(R.id.tv_ano);
         val detalhes :  Button = itemView.findViewById(R.id.btn_detalhes);
-
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -36,6 +41,24 @@ class ProposicoesAdapter(val list: List<Proposicao>, val context: Context): Recy
             siglaTipo.text = proposicao.siglaTipo
             ementa.text = proposicao.ementa
             ano.text = proposicao.ano.toString()
+            load(proposicao.uri, holder)
         }
+    }
+
+    private fun load(uri: String , holder: ViewHolder){
+        val request  = JsonObjectRequest(
+            Request.Method.GET,
+           uri,
+            null,
+            Response.Listener<JSONObject> {
+                val dados  = it.getJSONObject("dados")
+                holder.detalhes.setOnClickListener {
+                    var intent = Intent(Intent.ACTION_VIEW, Uri.parse(dados.getString("urlInteiroTeor")))
+                    context.startActivity(intent)
+                }
+
+            },
+            null)
+        requestQueue.add(request)
     }
 }
